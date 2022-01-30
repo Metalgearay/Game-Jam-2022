@@ -1,0 +1,4 @@
+:use apple
+say Player "Why should I throw it at the blackboard? I'm not angry!"
+:look
+say Player "test"

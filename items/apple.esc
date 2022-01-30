@@ -1,2 +1,3 @@
-:look
-say Player "it's an apple"
+:pickup
+inventory_add apple
+set_active apple false

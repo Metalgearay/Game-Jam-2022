@@ -49,6 +49,7 @@ signal arrived(walk_context)
 
 # The global ID of this item
 export(String) var global_id
+
 # The ESC script for this item
 export(String, FILE, "*.esc") var esc_script
 
@@ -327,16 +328,13 @@ func get_animation_player() -> Node:
 # **Returns** The interaction position
 func get_interact_position() -> Vector2:
 	var interact_position = null
-	print("here")
-	print("here")
 	for c in get_children():
-		print(c)
 		if c is Position2D:
 			interact_position = c.global_position
 			
 	if interact_position == null and collision != null:
 		interact_position = collision.global_position
-	print(interact_position)
+		
 	return interact_position
 
 

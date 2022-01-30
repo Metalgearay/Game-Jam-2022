@@ -1,2 +1,6 @@
-:arrived
+:look
 say Player "It smells like evil"
+:pickup
+
+inventory_add apple
+set_active apple false

@@ -1,29 +1,36 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://addons/escoria-core/game/core-scripts/esc_item.gd" type="Script" id=1]
 [ext_resource path="res://items/apple.png" type="Texture" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 40.0
+height = 40.0
 
 [node name="Apple" type="Area2D"]
 pause_mode = 1
 position = Vector2( 43, 19 )
 script = ExtResource( 1 )
-global_id = "apple "
+global_id = "apple"
 esc_script = "res://items/apple.esc"
+tooltip_name = "apple"
+default_action = "look"
+combine_when_selected_action_is_in = PoolStringArray( "use" )
+use_from_inventory_only = true
 inventory_texture = ExtResource( 2 )
 dialog_color = Color( 1, 1, 1, 1 )
 animations = null
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-modulate = Color( 0.00784314, 0.00784314, 0.00784314, 1 )
-self_modulate = Color( 0.560784, 0.176471, 0.176471, 1 )
-position = Vector2( -6.31693, -2.48228 )
-scale = Vector2( 1.18928, 1.05045 )
-polygon = PoolVector2Array( 14, -2, 69, 0, 72, 85, 0, 85, 0, 0 )
-
 [node name="TextureRect" type="TextureRect" parent="."]
-margin_right = 64.0
-margin_bottom = 80.0
+margin_right = 40.0
+margin_bottom = 40.0
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+modulate = Color( 0.352941, 0.227451, 0.227451, 1 )
+self_modulate = Color( 1, 1, 1, 0.415686 )
+position = Vector2( 33, 49 )
+shape = SubResource( 1 )

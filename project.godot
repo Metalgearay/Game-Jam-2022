@@ -717,7 +717,7 @@ window/size/width=800
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/escoria-core/plugin.cfg", "res://addons/escoria-dialog-simple/plugin.cfg", "res://addons/escoria-ui-simplemouse/plugin.cfg", "res://addons/github-integration/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/escoria-core/plugin.cfg", "res://addons/escoria-dialog-simple/plugin.cfg", "res://addons/escoria-ui-9verbs/plugin.cfg", "res://addons/github-integration/plugin.cfg" )
 
 [escoria]
 
@@ -734,7 +734,7 @@ debug/terminate_on_errors=true
 debug/development_lang="en"
 debug/log_level="TRACE"
 ui/tooltip_follows_mouse=true
-ui/game_scene="res://addons/escoria-ui-simplemouse/game.tscn"
+ui/game_scene="res://addons/escoria-ui-9verbs/game.tscn"
 ui/items_autoregister_path="res://items"
 ui/default_transition="curtain"
 ui/transition_paths=[ "res://addons/escoria-core/game/scenes/transitions/shaders/" ]
@@ -761,3 +761,7 @@ dialog_simple/avatars_path=""
 dialog_simple/text_speed_per_character=0.1
 dialog_simple/fast_text_speed_per_character=0.25
 dialog_simple/max_time_to_disappear=1.0
+
+[global]
+
+display=false

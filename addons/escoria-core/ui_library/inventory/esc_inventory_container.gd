@@ -16,6 +16,7 @@ func is_empty() -> bool:
 # **Returns** The button generated for the item
 func add_item(inventory_item: ESCInventoryItem) -> ESCInventoryButton:
 	var button = ESCInventoryButton.new(inventory_item)
+	print(inventory_item)
 	add_child(button)
 	return button
 

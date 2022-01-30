@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://addons/escoria-core/game/core-scripts/esc_background.gd" type="Script" id=1]
 [ext_resource path="res://addons/escoria-core/game/core-scripts/esc_terrain.gd" type="Script" id=2]
@@ -7,11 +7,12 @@
 [ext_resource path="res://characters/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://items/Apple.tscn" type="PackedScene" id=6]
 [ext_resource path="res://rooms/top_floor/back.png" type="Texture" id=7]
+[ext_resource path="res://addons/escoria-core/game/core-scripts/esc_item.gd" type="Script" id=8]
 
 [sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( -1, 411, 799, 405, 799, 406 )
-polygons = [ PoolIntArray( 0, 1, 2, 0 ) ]
-outlines = [ PoolVector2Array( -1, 411, 799, 405, 799, 406, -1, 411 ) ]
+vertices = PoolVector2Array( 12, 376, 820, 360, 818, 448, 12, 456 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 12, 376, 820, 360, 818, 448, 12, 456 ) ]
 
 [node name="ESCRoom" type="Node2D"]
 script = ExtResource( 4 )
@@ -20,10 +21,10 @@ player_scene = ExtResource( 5 )
 camera_limits = [ Rect2( 0, 0, 800, 600 ) ]
 
 [node name="ESCBackground" type="TextureRect" parent="."]
-margin_left = -1.0
-margin_top = -4.0
-margin_right = 635.0
-margin_bottom = 663.0
+margin_left = 6.0
+margin_top = 2.0
+margin_right = 806.0
+margin_bottom = 602.0
 mouse_filter = 2
 texture = ExtResource( 7 )
 script = ExtResource( 1 )
@@ -35,13 +36,31 @@ __meta__ = {
 script = ExtResource( 2 )
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="ESCTerrain"]
+position = Vector2( -12, -9 )
 navpoly = SubResource( 1 )
 
 [node name="ESCLocation" type="Position2D" parent="."]
-position = Vector2( 251, 410 )
+position = Vector2( 49, 445 )
 script = ExtResource( 3 )
 global_id = "start"
 is_start_location = true
 
 [node name="Apple" parent="." instance=ExtResource( 6 )]
-position = Vector2( 303, 371 )
+position = Vector2( 381, 354 )
+default_action_inventory = "look"
+
+[node name="ESCItem" type="Area2D" parent="."]
+pause_mode = 1
+position = Vector2( 381, 354 )
+script = ExtResource( 8 )
+global_id = "test"
+esc_script = "res://test.esc"
+dialog_color = Color( 1, 1, 1, 1 )
+animations = null
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ESCItem"]
+position = Vector2( -7, -2 )
+polygon = PoolVector2Array( -201, 13, -200, 93, -120, 90, -119, 11 )
+
+[node name="Position2D" type="Position2D" parent="ESCItem"]
+position = Vector2( -158, 53 )
