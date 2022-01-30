@@ -1,0 +1,47 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://addons/escoria-core/game/core-scripts/esc_background.gd" type="Script" id=1]
+[ext_resource path="res://addons/escoria-core/game/core-scripts/esc_terrain.gd" type="Script" id=2]
+[ext_resource path="res://addons/escoria-core/game/core-scripts/esc_location.gd" type="Script" id=3]
+[ext_resource path="res://addons/escoria-core/game/core-scripts/esc_room.gd" type="Script" id=4]
+[ext_resource path="res://characters/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://items/Apple.tscn" type="PackedScene" id=6]
+[ext_resource path="res://rooms/top_floor/back.png" type="Texture" id=7]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( -1, 411, 799, 405, 799, 406 )
+polygons = [ PoolIntArray( 0, 1, 2, 0 ) ]
+outlines = [ PoolVector2Array( -1, 411, 799, 405, 799, 406, -1, 411 ) ]
+
+[node name="ESCRoom" type="Node2D"]
+script = ExtResource( 4 )
+global_id = "top_floor"
+player_scene = ExtResource( 5 )
+camera_limits = [ Rect2( 0, 0, 800, 600 ) ]
+
+[node name="ESCBackground" type="TextureRect" parent="."]
+margin_left = -1.0
+margin_top = -4.0
+margin_right = 635.0
+margin_bottom = 663.0
+mouse_filter = 2
+texture = ExtResource( 7 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ESCTerrain" type="Navigation2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="ESCTerrain"]
+navpoly = SubResource( 1 )
+
+[node name="ESCLocation" type="Position2D" parent="."]
+position = Vector2( 251, 410 )
+script = ExtResource( 3 )
+global_id = "start"
+is_start_location = true
+
+[node name="Apple" parent="." instance=ExtResource( 6 )]
+position = Vector2( 303, 371 )

@@ -1,0 +1,124 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://addons/escoria-core/game/core-scripts/esc_player.gd" type="Script" id=1]
+[ext_resource path="res://characters/idle-export.png" type="Texture" id=2]
+[ext_resource path="res://addons/escoria-core/game/core-scripts/resources/esc_animationresource.gd" type="Script" id=3]
+[ext_resource path="res://addons/escoria-core/game/core-scripts/resources/esc_directionangle.gd" type="Script" id=4]
+[ext_resource path="res://addons/escoria-core/game/core-scripts/resources/esc_animationname.gd" type="Script" id=5]
+[ext_resource path="res://characters/walk.png" type="Texture" id=6]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0.0205128, 0.528205 )
+colors = PoolColorArray( 0.803922, 0.160784, 0.160784, 1, 0.904527, 0.591377, 0.591377, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+width = 1
+
+[sub_resource type="Resource" id=22]
+script = ExtResource( 4 )
+angle_start = 0
+angle_size = 179
+
+[sub_resource type="Resource" id=23]
+script = ExtResource( 4 )
+angle_start = 180
+angle_size = 179
+
+[sub_resource type="Resource" id=24]
+script = ExtResource( 5 )
+animation = "Walk"
+mirrored = false
+
+[sub_resource type="Resource" id=25]
+script = ExtResource( 5 )
+animation = "Walk"
+mirrored = true
+
+[sub_resource type="Resource" id=26]
+script = ExtResource( 5 )
+animation = "Base"
+mirrored = false
+
+[sub_resource type="Resource" id=27]
+script = ExtResource( 5 )
+animation = "Base"
+mirrored = true
+
+[sub_resource type="Resource" id=28]
+script = ExtResource( 5 )
+animation = "Base"
+mirrored = true
+
+[sub_resource type="Resource" id=29]
+script = ExtResource( 5 )
+animation = "Base"
+mirrored = true
+
+[sub_resource type="Resource" id=21]
+script = ExtResource( 3 )
+dir_angles = [ SubResource( 22 ), SubResource( 23 ) ]
+directions = [ SubResource( 24 ), SubResource( 25 ) ]
+idles = [ SubResource( 26 ), SubResource( 27 ) ]
+speaks = [ SubResource( 28 ), SubResource( 29 ) ]
+
+[sub_resource type="AtlasTexture" id=19]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 72, 136 )
+
+[sub_resource type="AtlasTexture" id=20]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 72, 0, 72, 136 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 72, 136 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 72, 0, 72, 136 )
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 19 ), SubResource( 20 ) ],
+"loop": true,
+"name": "Walk",
+"speed": 6.0
+}, {
+"frames": [ SubResource( 11 ), SubResource( 15 ) ],
+"loop": true,
+"name": "Base",
+"speed": 2.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=14]
+radius = 40.0
+height = 66.0
+
+[node name="ESCPlayer" type="Area2D"]
+pause_mode = 1
+position = Vector2( 1, 0 )
+script = ExtResource( 1 )
+global_id = "Player"
+is_movable = true
+inventory_texture = SubResource( 2 )
+dialog_color = Color( 0.0156863, 0, 0, 1 )
+animations = SubResource( 21 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 3, -67 )
+frames = SubResource( 9 )
+animation = "Walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 2, -71 )
+shape = SubResource( 14 )
